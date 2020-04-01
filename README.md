@@ -85,11 +85,9 @@ Try logging process.env.<YOUR_ENVIRONMENTAL_VARIABLE_NAME> from the node repl to
 
 Deploying our Node-Express-Mongoose application (our APIs) consists of 2 sets of steps. First, we'll sign up for Heroku and download the Heroku CLI. Then we'll set up a Mongo database that our app can connect to. Next, we'll configure our Node-Express-Mongoose applications (our APIs) to connect to this new cloud-hosted database and finally, deploy our application to Heroku.
 
-## You Do: Deploy 'Todos App'
+## Deploying our 'Seniors App'
 
-> Today you can use whatever working MEHN project you would like. If your need one to deploy, you can use the 'solution' branch of our Todo exercise.  Clone it [here](https://git.generalassemb.ly/ga-wdi-exercises/express-to-do/tree/solution).  
-
-> Make sure you checkout the ***solution*** branch! Pay special attention to step 7 below.
+> Today you can use whatever working project you would like. If your need one to deploy, you can create a new node app and follow along with me or fork and clone this repository.  
 
 We'll use Heroku to deploy our app, since it has a "free" pricing tier, and a ton of nice features that simplify and expedite deployment.
 
@@ -108,10 +106,10 @@ We'll use Heroku to deploy our app, since it has a "free" pricing tier, and a to
 5. **Before** deploying to heroku you will need to make a minor change to `index.js`. When Heroku starts your app it will automatically assign a port to `process.env.PORT` (an environmental variable!) to be used in production. We can modify `app.listen` to accomodate Heroku's production port and our own local development port.
 
 ```js
-  app.set('port', process.env.PORT || 3001)
+  const PORT = process.env.PORT || 3001
 
-  app.listen(app.get('port'), () => {
-    console.log(`✅ PORT: ${app.get('port')} 🌟`)
+  app.listen(PORT, () => {
+    console.log(`✅ PORT: ${PORT} 🌟`)
   })
 ```
 
@@ -121,7 +119,12 @@ We'll use Heroku to deploy our app, since it has a "free" pricing tier, and a to
 
   > Another way to do this is to add in your package.json under script, `"start": "node index.js"`
 
-7. Push your code to your 'Heroku' remote. `$ git push heroku master`
+7. Push your code to your 'Heroku' remote. 
+  ```bash
+    $ git add .
+    $ git commnit -m "final deployment"
+    $ git push heroku master
+  ```
 
   > If you aren't using a master branch you will need to run `$ git push heroku <your-branch>:master`
 
